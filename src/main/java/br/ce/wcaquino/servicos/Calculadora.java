@@ -1,6 +1,6 @@
 package br.ce.wcaquino.servicos;
 
-import br.ce.wcaquino.exceptions.NaoPodeDividirPorZeroExpection;
+import br.ce.wcaquino.exceptions.NaoPodeDividirPorZeroException;
 
 public class Calculadora {
 
@@ -12,12 +12,11 @@ public class Calculadora {
 		return a - b;
 	}
 
-	public int dividir(int a, int b) throws NaoPodeDividirPorZeroExpection {
-		if(b==0) {
-			throw new NaoPodeDividirPorZeroExpection();
+	public int divide(int a, int b) throws NaoPodeDividirPorZeroException {
+		if(b == 0) {
+			throw new NaoPodeDividirPorZeroException();
 		}
 		return a / b;
 	}
 
-	
 }
