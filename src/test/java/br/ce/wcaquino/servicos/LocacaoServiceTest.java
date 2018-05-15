@@ -3,6 +3,7 @@ package br.ce.wcaquino.servicos;
 
 import static br.ce.wcaquino.builders.FilmeBuilder.umFilme;
 import static br.ce.wcaquino.builders.FilmeBuilder.umFilmeSemEstoque;
+import static br.ce.wcaquino.builders.LocacaoBuilder.umLocacao;
 import static br.ce.wcaquino.builders.UsuarioBuilder.umUsuario;
 import static br.ce.wcaquino.matchers.MatchersProprios.caiNumaSegunda;
 import static br.ce.wcaquino.matchers.MatchersProprios.ehHoje;
@@ -23,7 +24,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
 import org.junit.rules.ExpectedException;
-import org.mockito.Mockito;
+import static org.mockito.Mockito.*;
 
 import br.ce.wcaquino.daos.LocacaoDao;
 import br.ce.wcaquino.entidades.Filme;
@@ -39,6 +40,7 @@ public class LocacaoServiceTest {
 	
 	private  LocacaoDao dao;
 	private SPCService spc;
+	private EmailService email;
 	
 	@Rule
 	public ErrorCollector error = new ErrorCollector();
@@ -49,16 +51,17 @@ public class LocacaoServiceTest {
 	@Before
 	public void setup(){
 		service = new LocacaoService();
-		dao = Mockito.mock(LocacaoDao.class);
+		dao = mock(LocacaoDao.class);
 		service.setLocacaoDao(dao);
-		spc = Mockito.mock(SPCService.class);
+		spc = mock(SPCService.class);
 		service.setSPCService(spc);
+		email = mock(EmailService.class);
+		service.setEmailService(email);
 	}
 	
 	@Test
 	public void deveAlugarFilme() throws Exception {
 		Assume.assumeFalse(DataUtils.verificarDiaSemana(new Date(), Calendar.SATURDAY));
-		
 		//cenario
 		Usuario usuario = umUsuario().agora();
 		List<Filme> filmes = Arrays.asList(umFilme().comValor(5.0).agora());
@@ -74,7 +77,7 @@ public class LocacaoServiceTest {
 	
 	@Test(expected = FilmeSemEstoqueException.class)
 	public void naoDeveAlugarFilmeSemEstoque() throws Exception{
-		//cenario
+		//cenarioLocacaoBuilder.umLocacao()
 		Usuario usuario = umUsuario().agora();
 		List<Filme> filmes = Arrays.asList(umFilmeSemEstoque().agora());
 		
@@ -125,18 +128,42 @@ public class LocacaoServiceTest {
 	}
 	
 	@Test 
-	public void naoDeveAlugarFilmeParaNegativadoSPC() throws FilmeSemEstoqueException, LocadoraException {
+	public void naoDeveAlugarFilmeParaNegativadoSPC() throws FilmeSemEstoqueException {
 		//cenario
 		Usuario usuario = umUsuario().agora();
 		List<Filme> filmes = Arrays.asList(umFilme().agora());
 		
-		Mockito.when(spc.possuiNegativacao(usuario)).thenReturn(true);
-		
-		exception.expect(LocadoraException.class);
-		exception.expectMessage("Usuário Negativado");
+		when(spc.possuiNegativacao(usuario)).thenReturn(true);
 		
 		//acao
-		service.alugarFilme(usuario, filmes);
+		try {
+			service.alugarFilme(usuario, filmes);
+			Assert.fail();
+		} catch (LocadoraException e) {
+			Assert.assertThat(e.getMessage(), is("Usuario Negativado"));
+		}
+		
+		verify(spc).possuiNegativacao(usuario);
 		
 	}
+	
+	@Test 
+	public void deveEnviarEmailParaLocacoesAtrasadas() throws FilmeSemEstoqueException, LocadoraException {
+		//cenario
+		Usuario usuario = umUsuario().agora();
+		List<Locacao> locacoes = Arrays.asList(
+					umLocacao()
+						.comUsuario(usuario)
+						.comDataRetorno(DataUtils.obterDataComDiferencaDias(-2)).agora());
+		
+		when(dao.obterLocacoesPendentes()).thenReturn(locacoes);
+		
+		//acao
+		service.notificarAtrasos();
+		
+		verify(email).notificarAtraso(usuario);
+		
+	}
+	
+	
 }
