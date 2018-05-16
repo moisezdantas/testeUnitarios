@@ -74,17 +74,9 @@ public class LocacaoService {
 		List<Locacao> locacoes = dao.obterLocacoesPendentes();
 		for (Locacao locacao : locacoes) {
 			//enviar email
-			emailService.notificarAtraso(locacao.getUsuario());
+			if(locacao.getDataRetorno().before(new Date())) {
+				emailService.notificarAtraso(locacao.getUsuario());
+			}
 		}
-	}
-	
-	public void setLocacaoDao(LocacaoDao dao) {
-		this.dao = dao;
-	}
-	public void setSPCService(SPCService spc) {
-		spcService = spc;
-	}
-	public void setEmailService(EmailService email) {
-		emailService = email;
 	}
 }
