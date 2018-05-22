@@ -19,7 +19,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import br.ce.wcaquino.daos.LocacaoDao;
+import br.ce.wcaquino.daos.LocacaoDAO;
 import br.ce.wcaquino.entidades.Filme;
 import br.ce.wcaquino.entidades.Locacao;
 import br.ce.wcaquino.entidades.Usuario;
@@ -33,7 +33,7 @@ public class CalculoValorLocacaoTest {
 	private LocacaoService service;
 	
 	@Mock
-	private LocacaoDao dao;
+	private LocacaoDAO dao;
 	
 	@Mock
 	private SPCService spc;
