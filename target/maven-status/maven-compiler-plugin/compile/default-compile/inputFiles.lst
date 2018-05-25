@@ -1,0 +1,15 @@
+/home/venus/estudo/testeUnitarios/src/main/java/br/ce/wcaquino/entidades/Locacao.java
+/home/venus/estudo/testeUnitarios/src/main/java/br/ce/wcaquino/exceptions/FilmeSemEstoqueException.java
+/home/venus/estudo/testeUnitarios/src/main/java/br/ce/wcaquino/utils/DataUtils.java
+/home/venus/estudo/testeUnitarios/src/main/java/br/ce/wcaquino/servicos/SPCService.java
+/home/venus/estudo/testeUnitarios/src/main/java/br/ce/wcaquino/servicos/LocacaoService.java
+/home/venus/estudo/testeUnitarios/src/main/java/br/ce/wcaquino/exceptions/NaoPodeDividirPorZeroException.java
+/home/venus/estudo/testeUnitarios/src/main/java/br/ce/wcaquino/servicos/EmailService.java
+/home/venus/estudo/testeUnitarios/src/main/java/br/ce/wcaquino/daos/LocacaoDAO.java
+/home/venus/estudo/testeUnitarios/src/main/java/br/ce/wcaquino/daos/LocacaoDao.java
+/home/venus/estudo/testeUnitarios/src/main/java/br/ce/wcaquino/exceptions/LocadoraException.java
+/home/venus/estudo/testeUnitarios/src/main/java/br/ce/wcaquino/daos/LocacaoDAOFake.java
+/home/venus/estudo/testeUnitarios/src/main/java/br/ce/wcaquino/entidades/Usuario.java
+/home/venus/estudo/testeUnitarios/src/main/java/br/ce/wcaquino/entidades/Filme.java
+/home/venus/estudo/testeUnitarios/src/main/java/br/ce/wcaquino/servicos/Calculadora.java
+/home/venus/estudo/testeUnitarios/src/main/java/br/ce/wcaquino/servicos/TimeService.java

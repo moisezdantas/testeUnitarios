@@ -1,0 +1,15 @@
+/home/venus/estudo/testeUnitarios/src/test/java/br/ce/wcaquino/matchers/MatchersProprios.java
+/home/venus/estudo/testeUnitarios/src/test/java/br/ce/wcaquino/matchers/DiaSemanaMatcher.java
+/home/venus/estudo/testeUnitarios/src/test/java/br/ce/wcaquino/servicos/CalculadoraMockTest.java
+/home/venus/estudo/testeUnitarios/src/test/java/br/ce/wcaquino/servicos/CalculoValorLocacaoTest.java
+/home/venus/estudo/testeUnitarios/src/test/java/br/ce/wcaquino/servicos/LocacaoServiceTest_PowerMock.java
+/home/venus/estudo/testeUnitarios/src/test/java/br/ce/wcaquino/matchers/DataDiferencaDiasMatcher.java
+/home/venus/estudo/testeUnitarios/src/test/java/br/ce/wcaquino/suites/SuiteExecucao.java
+/home/venus/estudo/testeUnitarios/src/test/java/br/ce/wcaquino/servicos/CalculadoraTest.java
+/home/venus/estudo/testeUnitarios/src/test/java/br/ce/wcaquino/builders/LocacaoBuilder.java
+/home/venus/estudo/testeUnitarios/src/test/java/OrdemTest.java
+/home/venus/estudo/testeUnitarios/src/test/java/br/ce/wcaquino/builders/UsuarioBuilder.java
+/home/venus/estudo/testeUnitarios/src/test/java/br/ce/wcaquino/runners/ParallelRunner.java
+/home/venus/estudo/testeUnitarios/src/test/java/br/ce/wcaquino/builders/FilmeBuilder.java
+/home/venus/estudo/testeUnitarios/src/test/java/br/ce/wcaquino/servicos/LocacaoServiceTest.java
+/home/venus/estudo/testeUnitarios/src/test/java/AssertTest.java
